@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Defensa" pageWidth="612" pageHeight="792" columnWidth="500" leftMargin="56" rightMargin="56" topMargin="56" bottomMargin="20" uuid="296c1cb2-1361-49d9-ae27-6b56d6588bb8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="emi_defensa_tesis"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="606"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="385"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="urlLogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:/Users/jhalmar/Desktop/logo.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idDefensa" class="java.lang.Integer"/>
+	<parameter name="pathDetalleReporte" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/ronald/Development/PHPProjects/emi-defensa-tesis/storage/jrxml/ResumenCalificacionesDetalle.jasper"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ua."Alias" as "Ciudad", e."Persona" as "Estudiante", d."TG1Equivalente" ,d."TG2Equivalente", round((d."TG1Equivalente"+d."TG2Equivalente") /2*0.2,2) as "PromedioTG",
+round((d."PromedioDefensa"*0.8),2) as "PromedioDefensa",d."PromedioTotal", d."PromedioTotalLiteral",
+date_part('day', now()) as "Dia",
+case date_part('month', now())
+	when 1 then 'enero'
+	when 2 then 'febrero'
+	when 3 then 'marzo'
+	when 4 then 'abril'
+	when 5 then 'mayo'
+	when 6 then 'junio'
+	when 7 then 'julio'
+	when 8 then 'agosto'
+	when 9 then 'septiembre'
+	when 10 then 'octubre'
+	when 11 then 'noviembre'
+	when 12 then 'diciembre'
+	else '' end as "Mes",
+date_part('year', now()) as "Anio"
+from "Defensa" d 
+inner join "Persona" e on d."Persona" = e.id
+inner join "UnidadAcademica" ua on d."UnidadAcademica" = ua.id
+where d.id = $P{idDefensa}]]>
+	</queryString>
+	<field name="Ciudad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Ciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UnidadAcademica"/>
+	</field>
+	<field name="Estudiante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Estudiante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Persona"/>
+	</field>
+	<field name="TG1Equivalente" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="TG1Equivalente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="TG2Equivalente" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="TG2Equivalente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="PromedioTG" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioTG"/>
+	</field>
+	<field name="PromedioDefensa" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioDefensa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="PromedioTotal" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioTotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="PromedioTotalLiteral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioTotalLiteral"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="Dia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Dia"/>
+	</field>
+	<field name="Mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Mes"/>
+	</field>
+	<field name="Anio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Anio"/>
+	</field>
+	<group name="MiembroGroup">
+		<groupHeader>
+			<band height="61">
+				<staticText>
+					<reportElement x="0" y="14" width="183" height="46" uuid="bf07ca55-bd90-4879-a736-82e5dd04eb40"/>
+					<box leftPadding="4">
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Promedio de TG-I Y TG-II]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="183" y="14" width="86" height="20" uuid="28241d45-e416-43e4-98bd-d65d93add7eb"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[TG-I]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="269" y="14" width="100" height="20" uuid="2ba858ff-3d88-4d82-8eac-7e40d96a4105"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[TG-II]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="369" y="14" width="130" height="20" uuid="f75a2077-37e7-42e1-a4d8-aa2819a1e561"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PROM. FINAL * 0,2]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#" isBlankWhenNull="true">
+					<reportElement x="183" y="34" width="86" height="26" uuid="43c989f6-0733-4493-9c68-66bf55bf3bd5"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TG1Equivalente}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#" isBlankWhenNull="true">
+					<reportElement x="269" y="34" width="100" height="26" uuid="bc21dae9-0b82-4732-9a32-724ca92c0252"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TG2Equivalente}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#" isBlankWhenNull="true">
+					<reportElement x="369" y="34" width="130" height="26" uuid="0994614b-16d1-4d58-b759-90bda762d4e5"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PromedioTG}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="216">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="183" y="186" width="316" height="23" uuid="4aef85c0-f0f9-47f0-ae5e-c7d8510b1458"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[CONCATENATE($F{Ciudad},", ",$F{Dia}," de ",$F{Mes}," del ", $F{Anio})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="5" width="369" height="36" uuid="ad79f5ce-9ca1-439f-8044-e1b8546235ad"/>
+					<box leftPadding="4">
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PROMEDIO FINAL DEFENSA PUBLICA * 0.8]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#" isBlankWhenNull="true">
+					<reportElement x="369" y="5" width="130" height="36" uuid="e262d8ad-4bff-4609-b18b-955fa7159cec"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PromedioDefensa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="41" width="500" height="36" uuid="ad68defb-2d3a-4481-aa23-936641a18f19"/>
+					<box leftPadding="4">
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[CAL. FINAL (PROM. GENERAL TG-1 y TGII * 0.2) + (PROM FINAL DEFENSA PÚBLICA *0.8)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="77" width="500" height="98" uuid="b2fc707b-d861-453a-b9bd-d0304d624670"/>
+					<box leftPadding="4">
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="110" width="130" height="20" uuid="7101a680-568f-4324-834e-8f50446499ee"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[PROMEDIO FINAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="183" y="116" width="130" height="20" uuid="b7454edb-d5aa-49e1-aec1-1df8f42bb78f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[NUMERAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="350" y="116" width="130" height="20" uuid="26871ed6-c52b-4301-ae3c-3865693ae4c0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[LITERAL]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#" isBlankWhenNull="true">
+					<reportElement x="183" y="95" width="130" height="21" uuid="4043d0a1-3d37-4fc4-b594-60d1981b1fd5"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PromedioTotal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#" isBlankWhenNull="true">
+					<reportElement x="350" y="95" width="130" height="21" uuid="b714ad72-a21b-4274-aa07-22f8bdaba223"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PromedioTotalLiteral}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="181" y="115" width="132" height="1" uuid="e2c7b7a5-95d8-46f8-99be-f1f6b22d0311"/>
+					<graphicElement>
+						<pen lineWidth="1.5" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="350" y="115" width="132" height="1" uuid="e51758d5-9a95-4337-93bb-d44980e158f2"/>
+					<graphicElement>
+						<pen lineWidth="1.5" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="500" height="80" uuid="c3260d0a-4f3e-441f-a7ca-f8b1e866a949"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE CALIFICACIONES DE LA
+PRESENTACIÓN, EXPOSICIÓN Y SUSTENTACIÓN EN LINEA DEL TRABAJO DE GRADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="130" height="22" uuid="a5b23d09-a55c-4a11-aea1-95782d79af78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[POSTULANTE]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="130" y="80" width="370" height="22" uuid="4b9b1656-25c0-4c5d-879e-084997d6d3b0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estudiante}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50">
+			<subreport>
+				<reportElement x="-56" y="0" width="612" height="50" uuid="6faf223b-9b1f-4321-b582-afac570b7bec"/>
+				<subreportParameter name="idDefensa">
+					<subreportParameterExpression><![CDATA[$P{idDefensa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{pathDetalleReporte}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

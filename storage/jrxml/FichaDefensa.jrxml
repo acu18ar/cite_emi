@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ActaPESL" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c71ed0b9-e8fa-4457-b4e7-0320c6d253c4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="emi_defensa_tesis"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="179"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="816"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="471"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="518"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="urlLogo" class="java.lang.String"/>
+	<parameter name="idDefensa" class="java.lang.Integer"/>
+	<parameter name="pathServer" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/mauricio/laravel/emi-defensa-tesis/storage/app/public/documents/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pathFirmasReport" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/mauricio/laravel/emi-defensa-tesis/storage/jrxml/Firmas.jasper"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select ua."Alias" as "Ciudad", 
+	e."Persona" as "Estudiante", 
+	e."Foto",
+	d."TG1",
+	d."TG2",
+	d."TG1Equivalente",
+	d."TG2Equivalente", 
+	round((d."TG1Equivalente"+d."TG2Equivalente") /2,2) as "PromedioTG",
+    concat(to_char(d."FechaHora", 'HH24'),':',to_char(d."FechaHora", 'MI')) as "HoraDefensa",
+	date_part('day', d."FechaHora") as "DiaDefensa",
+	case date_part('dow', d."FechaHora") when 1 then 'lunes' when 2 then 'martes' when 3 then 'miércoles' when 4 then 'jueves' when 5 then 'viernes' when 6 then 'sábado' else 'domingo' end as "DiaDefensaLiteral",
+		date_part('month', d."FechaHora") as "MesDefensa",
+		date_part('year', d."FechaHora") as "AnioDefensa",
+		es."Especialidad",
+		na."NivelAcademico",
+		d."Titulo",	
+	date_part('day', now()) as "Dia",
+	case date_part('month', now())
+		when 1 then 'enero'
+		when 2 then 'febrero'
+		when 3 then 'marzo'
+		when 4 then 'abril'
+		when 5 then 'mayo'
+		when 6 then 'junio'
+		when 7 then 'julio'
+		when 8 then 'agosto'
+		when 9 then 'septiembre'
+		when 10 then 'octubre'
+		when 11 then 'noviembre'
+		when 12 then 'diciembre'
+		else '' end as "Mes",
+	date_part('year', now()) as "Anio",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 1 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Tutor",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 2 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Vocal1",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 3 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Vocal2",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 6 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "VocalRelator",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 7 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Presidente"
+	from "Defensa" d 
+	inner join "Persona" e on d."Persona" = e.id
+	inner join "UnidadAcademica" ua on d."UnidadAcademica" = ua.id
+	inner join "Especialidad" es on d."Especialidad" = es.id
+	inner join "NivelAcademico" na on es."NivelAcademico" = na.id
+	where d.id =   $P{idDefensa}  ;]]>
+	</queryString>
+	<field name="Ciudad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Ciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UnidadAcademica"/>
+	</field>
+	<field name="Estudiante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Estudiante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Persona"/>
+	</field>
+	<field name="Foto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Persona"/>
+	</field>
+	<field name="TG1Equivalente" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TG1Equivalente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="TG2Equivalente" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TG2Equivalente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="HoraDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="HoraDefensa"/>
+	</field>
+	<field name="DiaDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DiaDefensa"/>
+	</field>
+	<field name="DiaDefensaLiteral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DiaDefensaLiteral"/>
+	</field>
+	<field name="MesDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MesDefensa"/>
+	</field>
+	<field name="AnioDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="AnioDefensa"/>
+	</field>
+	<field name="Especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Especialidad"/>
+	</field>
+	<field name="NivelAcademico" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NivelAcademico"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="NivelAcademico"/>
+	</field>
+	<field name="Titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="Dia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Dia"/>
+	</field>
+	<field name="Mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Mes"/>
+	</field>
+	<field name="Anio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Anio"/>
+	</field>
+	<field name="Tutor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Tutor"/>
+	</field>
+	<field name="TG2" class="java.lang.String"/>
+	<field name="Vocal1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Vocal1"/>
+	</field>
+	<field name="Vocal2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Vocal2"/>
+	</field>
+	<field name="VocalRelator" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="VocalRelator"/>
+	</field>
+	<field name="Presidente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Presidente"/>
+	</field>
+	<field name="TG1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="180" height="10" forecolor="#090DE6" uuid="f974efd5-ca80-447f-bd21-5599eef4599b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA["Mcal. Antonio José de Sucre"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="180" height="10" forecolor="#090DE6" uuid="c3d1d3be-9b2f-4e1d-986e-64ca7806a71f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[BOLIVIA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="50" width="535" height="40" uuid="2fce1c49-22b8-4ff4-bd44-8946d4d883d6"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE("FICHA DE DEFENSA DE TRABAJO DE GRADO EN LINEA")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="180" height="10" forecolor="#090DE6" uuid="c3d51aae-07f5-4cfe-b0bf-d1a3afdd604d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[ESCUELA MILITAR DE INGENIERIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="263" y="22" width="292" height="24" uuid="51629204-9d6d-4901-9c42-ea1c436230c7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($F{Ciudad}, ", ",$F{Dia}," de ", $F{Mes} , " de ",$F{Anio})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="10" forecolor="#090DE6" uuid="55241864-5fdf-4772-a0fd-e8f4cb29f952"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[COMANDO GENERAL DEL EJÉRCITO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="560" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="460" width="575" height="100" uuid="9cbd8172-c06e-4d4c-93b8-7f1a8c73cdaa"/>
+				<subreportParameter name="idDefensa">
+					<subreportParameterExpression><![CDATA[$P{idDefensa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pathServer">
+					<subreportParameterExpression><![CDATA[$P{pathServer}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{pathFirmasReport}]]></subreportExpression>
+			</subreport>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Icon">
+				<reportElement x="20" y="0" width="122" height="120" uuid="c056ecf8-e3c7-4a3e-a7d2-66577af071c8"/>
+				<box topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[$P{pathServer} + "documents/"+$F{Foto}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="300" y="-10" width="260" height="28" uuid="b1b65e36-a7a2-40f9-b787-18314a78a1e1"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Estudiante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="-10" width="140" height="28" uuid="df6990ee-be5b-4a99-b7cf-36150c04515e"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DEL ESTUDIANTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="300" y="18" width="260" height="85" uuid="c6f98926-e732-4f1e-a6dd-37f71bad56f9"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="18" width="140" height="85" uuid="039082d6-193d-4a2d-b36f-63411f271757"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TITULO DEL  TRABAJO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="190" width="120" height="28" uuid="5158d199-df96-486b-aebd-20bf66de632c"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TG1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="190" width="122" height="28" uuid="11d6e664-bd95-4b94-9e5f-b8e2737dba4b"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA TG1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="218" width="120" height="28" uuid="22f6d6f5-18db-4efa-8fdf-30576f6205f8"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TG2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="218" width="122" height="28" uuid="299ea937-35e1-45fd-8847-39d4808deb5d"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA TG2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="432" y="188" width="120" height="28" uuid="3ed94aa1-4b85-4119-a487-590260ce1452"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TG1Equivalente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="188" width="122" height="28" uuid="c9fca4c0-d4c6-4259-845b-ca0503532749"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TG1 EQUIVALENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="432" y="216" width="120" height="28" uuid="ee57aa68-3579-4563-99c7-deead1f90ca1"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TG2Equivalente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="216" width="122" height="28" uuid="33376715-3bf0-4101-924e-3e2381d46fed"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TG2 EQUIVALENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="240" y="131" width="120" height="28" uuid="45109135-eafe-4e72-8374-70e678691d6a"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[CONCATENATE($F{DiaDefensa},"/" ,$F{MesDefensa},"/",$F{AnioDefensa})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="131" width="80" height="28" uuid="5cf6646e-7540-4e15-9e7b-7fb03acf4848"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="131" width="120" height="28" uuid="e6ded7f9-4abc-4af2-adf5-a504cb8bb1f3"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{HoraDefensa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="131" width="80" height="28" uuid="2b584b25-314f-44ea-895d-ac718657ed2c"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="103" width="260" height="28" uuid="9d28a5bd-051d-4520-8918-8a02922e38a7"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Especialidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="103" width="140" height="28" uuid="5bb7ac63-6acc-4f16-974a-0b936bf9db05"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESPECIALIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="158" width="250" height="30" uuid="90e91187-1441-47f2-b35d-c56ad386f2bf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[II. NOTAS DE TRABAJO DE GRADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="-40" width="190" height="30" uuid="60a95ac6-77c1-442e-bcf9-37efd5434b26"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[I. DATOS DE LA DEFENSA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="258" width="220" height="30" uuid="24c89559-4cbb-412e-8107-80a1a690c9e6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[III. TRIBUNAL DE LA DEFENSA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="288" width="160" height="28" uuid="47224a77-d1d1-4ae5-8784-83c5609e578d"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRESIDENTE DE TRIBUNAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="288" width="372" height="28" uuid="3e9572ae-3e13-43b7-8f87-2607ee215cab"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Presidente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="316" width="160" height="28" uuid="8fbf8bdf-bcbf-4ce2-9eb2-1774086f8c29"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VOCAL RELATOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="316" width="372" height="28" uuid="83b670ca-2da1-4a8a-9fcb-4c00d5053b11"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{VocalRelator}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="344" width="160" height="28" uuid="37a21159-3f62-47db-82ca-db586157fb02"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VOCAL REVISOR I]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="344" width="372" height="28" uuid="6c5806f7-5148-4ca5-a19d-d48d19f2dfaf"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Vocal1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="372" width="160" height="28" uuid="3293d5a6-17f9-4e94-b776-1bf553f197db"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VOCAL REVISOR II]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="372" width="372" height="28" uuid="f63a76c7-f643-4af3-857a-7d4930705177"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Vocal2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="400" width="160" height="28" uuid="a5cab6b7-72d2-4e99-a408-03e3f1d5bd51"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TUTOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="400" width="372" height="28" uuid="b677d5d7-8ece-4c07-ba7b-c5f3582a8553"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Tutor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="430" width="220" height="30" uuid="401356c1-e79f-47ba-8da2-c68e1d66dbb6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IV. FIRMAS DEL TRIBUNAL]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

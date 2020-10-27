@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ActaPESL" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c71ed0b9-e8fa-4457-b4e7-0320c6d253c4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="emi_defensa_tesis"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="179"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="816"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="254"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="736"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="urlLogo" class="java.lang.String"/>
+	<parameter name="idDefensa" class="java.lang.Integer"/>
+	<parameter name="pathServer" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/mauricio/laravel/emi-defensa-tesis/storage/app/public/documents/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pathFirmasReport" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/mauricio/laravel/emi-defensa-tesis/storage/jrxml/Firmas.jasper"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select *,concat('En la ciudad de ', z."Ciudad", ' a horas ', z."HoraDefensa", ' del día ' , z."DiaDefensaLiteral", ' ', z."DiaDefensa", ' de ', z."MesDefensa",' del año ' ,z."AnioDefensa", ' en la Escuela Militar de Ingeniería  Mcal. Antonio José de Sucre, 
+                        se hizo presente el(la) Señor(a) ' , z."Estudiante",' postulante al Diploma Académico de ' ,z."NivelAcademico", ' y al Título Profesional de <b>' ,z."Especialidad", '</b>, ante el Tribunal de Trabajo de Grado conformado para el efecto, por el señor <b>',  
+                        z."Presidente", ', Presidente del Tribunal</b>, de los señores ' , z."Vocal1",' e ', z."Vocal2",  ' <b>Vocales de la Carrera </b>; del(a) señor(a) ' , z."Tutor", ' <b>Tutor del Trabajo de Grado </b> y del señor ', z."VocalRelator", ', <b>Vocal Relator.</b>') as "Parrafo1",
+concat('Iniciado el Acto de referencia y efectuada la Presentación, Exposición y Sustentación de Trabajo de Grado  sobre el Tema: <b>', z."Titulo",'</b>, los señores miembros del tribunal arribaron a los siguientes resultados:') as "Parrafo2",
+concat('Siendo por tanto acreedor al Diploma Académico y al Título Profesional de <b>' , z."Especialidad", '</b>, de acuerdo a disposiciones legales vigentes y  al Reglamente RAC-02 con lo que terminó el Acto Académico, firmado al pie los señores miembros del Tribunal.') as "Parrafo3"
+from (
+	select ua."Alias" as "Ciudad", e."Persona" as "Estudiante", e."Foto",d."TG1Equivalente" ,d."TG2Equivalente", round((d."TG1Equivalente"+d."TG2Equivalente") /2,2) as "PromedioTG",
+	d."PromedioDefensa",d."PromedioTotal", d."PromedioTotalLiteral",d."Significacion",
+	concat(date_part('hour', d."FechaHora"),':', date_part('minute', d."FechaHora")) as "HoraDefensa",
+	date_part('day', d."FechaHora") as "DiaDefensa",
+	case date_part('dow', d."FechaHora") when 1 then 'lunes' when 2 then 'martes' when 3 then 'miércoles' when 4 then 'jueves' when 5 then 'viernes' when 6 then 'sábado' else 'domingo' end as "DiaDefensaLiteral",
+	case date_part('month', d."FechaHora")
+		when 1 then 'enero'
+		when 2 then 'febrero'
+		when 3 then 'marzo'
+		when 4 then 'abril'
+		when 5 then 'mayo'
+		when 6 then 'junio'
+		when 7 then 'julio'
+		when 8 then 'agosto'
+		when 9 then 'septiembre'
+		when 10 then 'octubre'
+		when 11 then 'noviembre'
+		when 12 then 'diciembre'
+		else '' end as "MesDefensa",
+		case date_part('year', d."FechaHora")
+		when 2020 then 'dos mil veinte'
+		when 2021 then 'dos mil vientiuno'
+		when 2022 then 'dos mil vientidos'
+		when 2023 then 'dos mil vientitres'
+		when 2024 then 'dos mil vienticuatro'
+		when 2025 then 'dos mil vienticinco'
+		else '' end as "AnioDefensa",
+		es."Especialidad",
+		na."NivelAcademico",
+		d."Titulo",	
+	date_part('day', now()) as "Dia",
+	case date_part('month', now())
+		when 1 then 'enero'
+		when 2 then 'febrero'
+		when 3 then 'marzo'
+		when 4 then 'abril'
+		when 5 then 'mayo'
+		when 6 then 'junio'
+		when 7 then 'julio'
+		when 8 then 'agosto'
+		when 9 then 'septiembre'
+		when 10 then 'octubre'
+		when 11 then 'noviembre'
+		when 12 then 'diciembre'
+		else '' end as "Mes",
+	date_part('year', now()) as "Anio",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 1 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Tutor",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 2 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Vocal1",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 3 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Vocal2",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 6 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "VocalRelator",
+	(select concat(a."Grado", ' ', a."Persona") from "PersonaDefensa" b inner join "Persona" a on b."Persona" = a.id and b."TipoMiembro" = 7 and b.deleted_at is null and b."Defensa" = d.id limit 1) as "Presidente"
+	from "Defensa" d 
+	inner join "Persona" e on d."Persona" = e.id
+	inner join "UnidadAcademica" ua on d."UnidadAcademica" = ua.id
+	inner join "Especialidad" es on d."Especialidad" = es.id
+	inner join "NivelAcademico" na on es."NivelAcademico" = na.id
+	where d.id =   $P{idDefensa} 
+) z ;]]>
+	</queryString>
+	<field name="Ciudad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Ciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UnidadAcademica"/>
+	</field>
+	<field name="Estudiante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Estudiante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Persona"/>
+	</field>
+	<field name="Foto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Persona"/>
+	</field>
+	<field name="TG1Equivalente" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TG1Equivalente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="TG2Equivalente" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TG2Equivalente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="PromedioTG" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioTG"/>
+	</field>
+	<field name="PromedioDefensa" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioDefensa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="PromedioTotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioTotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="PromedioTotalLiteral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PromedioTotalLiteral"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="Significacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Significacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="HoraDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="HoraDefensa"/>
+	</field>
+	<field name="DiaDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DiaDefensa"/>
+	</field>
+	<field name="DiaDefensaLiteral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DiaDefensaLiteral"/>
+	</field>
+	<field name="MesDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MesDefensa"/>
+	</field>
+	<field name="AnioDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="AnioDefensa"/>
+	</field>
+	<field name="Especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Especialidad"/>
+	</field>
+	<field name="NivelAcademico" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NivelAcademico"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="NivelAcademico"/>
+	</field>
+	<field name="Titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="Dia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Dia"/>
+	</field>
+	<field name="Mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Mes"/>
+	</field>
+	<field name="Anio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Anio"/>
+	</field>
+	<field name="Tutor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Tutor"/>
+	</field>
+	<field name="Vocal1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Vocal1"/>
+	</field>
+	<field name="Vocal2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Vocal2"/>
+	</field>
+	<field name="VocalRelator" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="VocalRelator"/>
+	</field>
+	<field name="Presidente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Presidente"/>
+	</field>
+	<field name="Parrafo1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Parrafo1"/>
+	</field>
+	<field name="Parrafo2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Parrafo2"/>
+	</field>
+	<field name="Parrafo3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Parrafo3"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="180" height="10" forecolor="#090DE6" uuid="f974efd5-ca80-447f-bd21-5599eef4599b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA["Mcal. Antonio José de Sucre"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="180" height="10" forecolor="#090DE6" uuid="c3d1d3be-9b2f-4e1d-986e-64ca7806a71f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[BOLIVIA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="40" y="50" width="480" height="70" uuid="2fce1c49-22b8-4ff4-bd44-8946d4d883d6"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE("ASISTENCIA DEL TRIBUNAL A LA EXPOSICIÓN Y SUSTENTACIÓN EN LINEA DEL TRABAJO DE GRADO PERTENECIENTE AL SR.(A)  " , $F{Estudiante})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="180" height="10" forecolor="#090DE6" uuid="c3d51aae-07f5-4cfe-b0bf-d1a3afdd604d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[ESCUELA MILITAR DE INGENIERIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="263" y="22" width="292" height="24" uuid="51629204-9d6d-4901-9c42-ea1c436230c7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($F{Ciudad}, ", ",$F{Dia}," de ", $F{Mes} , " de ",$F{Anio})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="10" forecolor="#090DE6" uuid="55241864-5fdf-4772-a0fd-e8f4cb29f952"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[COMANDO GENERAL DEL EJÉRCITO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="600" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" x="-7" y="0" width="575" height="410" uuid="9cbd8172-c06e-4d4c-93b8-7f1a8c73cdaa"/>
+				<subreportParameter name="idDefensa">
+					<subreportParameterExpression><![CDATA[$P{idDefensa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pathServer">
+					<subreportParameterExpression><![CDATA[$P{pathServer}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{pathFirmasReport}]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="36" y="416" width="500" height="15" uuid="ad889507-231c-4498-a9c0-28f3fa04db1b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Art. 96. RETRASO, RETIRO ANTICIPADO E INASISTENCIA. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="431" width="500" height="54" uuid="51c5446b-4db8-4d12-9be8-efee86adc6a4"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[El retraso, retiro anticipado e inasistencia de los miembros del Tribunal a este Acto Académico, denota una falta de consideración y respeto con esta Casa de Estudios Superiores y al postulante a obtener el Título Académico, actitud que amerita un informe del Vocal Relator al Vicerrectorado de Grado considerándose una tolerancia máxima de 15 minutos como retraso.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="485" width="500" height="15" uuid="3ed73f82-4313-4e05-b2ad-b45a797bc995">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Art. 97. SANCION A LOS MIEMBROS DEL TRIBUNAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="500" width="500" height="95" uuid="15154e9d-6ac3-47d0-b5eb-e97aac9ef521"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Por tratarse de un acto respaldado por normas que garantizan la seriedad y el prestigio de esta Casa de Estudios Superiores, la impuntualidad o retiro anticipado de los miembros del Tribunal, o emplear adjetivos que vayan en contra de la ética profesional, será sancionada con el descuento del 50% de su remuneración y un memorándum de llamada de atención. 
+
+La reincidencia o inasistencia, serán sancionadas con la pérdida de su remuneración y la suspensión en la conformación de Tribunales de Trabajo de Grado por la gestión.
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

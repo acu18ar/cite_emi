@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ActaPESL" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c71ed0b9-e8fa-4457-b4e7-0320c6d253c4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="emi_defensa_tesis"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="179"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="816"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="396"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="591"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="urlLogo" class="java.lang.String"/>
+	<parameter name="idDefensa" class="java.lang.Integer"/>
+	<parameter name="pathServer" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/home/mauricio/laravel/emi-defensa-tesis/storage/app/public/documents/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[
+
+select *,
+concat(z."Ciudad", ', ',z."Dia",' de ', z."Mes" , ' de ',z."Anio") as "Cabecera",
+concat('Revisados los antecedentes de SR.(A)  ' , z."Estudiante", ', se evidencia que ha cumplido con todos los requisitos exigidos para la Presentación, Exposición y Sustentación en línea del Trabajo de Grado, sobre el Tema: ' , z."Titulo",', de la Carrera ', z."Especialidad") as "Parrafo1",
+concat('Presentado el Trabajo en el tiempo establecido por Reglamento, fue sometido a revisión por el Tribunal Examinador asignado, conformado por autoridades de la Escuela Militar de Ingeniería, Vocales de la Carrera y Docente Tutor; Trabajo de Grado que mereció la aprobación para su Defensa Pública en línea; por lo que, el Rectorado de la Escuela Militar de Ingeniería en uso de sus atribuciones y mediante Resolución Académica N° 1/2020  resuelve fijar para hoy  ',z."Dia" ,' de ', z."Mes" , ' de ',z."Anio" ,' a horas ', z."HoraDefensa" ,', el Acto Académico de Presentación, Exposición y Sustentación en línea del Trabajo de Grado. Previa lectura del Reglamento RAC-02 “Graduación de Grado”, Cap. VI Arts. 79º, 80º, 82º, 86º al 90º que a la letra dice: ') as "Parrafo2"
+from (
+select ua."Alias" as "Ciudad", e."Persona" as "Estudiante", d."Significacion",
+concat(to_char(d."FechaHora", 'HH'),':',to_char(d."FechaHora", 'MI')) as "HoraDefensa",
+date_part('day', d."FechaHora") as "DiaDefensa",
+case date_part('dow', d."FechaHora") when 1 then 'lunes' when 2 then 'martes' when 3 then 'miércoles' when 4 then 'jueves' when 5 then 'viernes' when 6 then 'sábado' else 'domingo' end as "DiaDefensaLiteral",
+case date_part('month', d."FechaHora")
+	when 1 then 'enero'
+	when 2 then 'febrero'
+	when 3 then 'marzo'
+	when 4 then 'abril'
+	when 5 then 'mayo'
+	when 6 then 'junio'
+	when 7 then 'julio'
+	when 8 then 'agosto'
+	when 9 then 'septiembre'
+	when 10 then 'octubre'
+	when 11 then 'noviembre'
+	when 12 then 'diciembre'
+	else '' end as "MesDefensa",
+	case date_part('year', d."FechaHora")
+	when 2020 then 'dos mil veinte'
+	when 2021 then 'dos mil vientiuno'
+	when 2022 then 'dos mil vientidos'
+	when 2023 then 'dos mil vientitres'
+	when 2024 then 'dos mil vienticuatro'
+	when 2025 then 'dos mil vienticinco'
+	else '' end as "AnioDefensa",
+	es."Especialidad",
+	na."NivelAcademico",
+	'<b><i>Cnl. DAEN Julio Cesar Narváez Tamayo</i></b>' as "Parrafo",
+	d."Titulo",	
+date_part('day', now()) as "Dia",
+case date_part('month', now())
+	when 1 then 'enero'
+	when 2 then 'febrero'
+	when 3 then 'marzo'
+	when 4 then 'abril'
+	when 5 then 'mayo'
+	when 6 then 'junio'
+	when 7 then 'julio'
+	when 8 then 'agosto'
+	when 9 then 'septiembre'
+	when 10 then 'octubre'
+	when 11 then 'noviembre'
+	when 12 then 'diciembre'
+	else '' end as "Mes",
+date_part('year', now()) as "Anio"
+from "Defensa" d 
+inner join "Persona" e on d."Persona" = e.id
+inner join "UnidadAcademica" ua on d."UnidadAcademica" = ua.id
+inner join "Especialidad" es on d."Especialidad" = es.id
+inner join "NivelAcademico" na on es."NivelAcademico" = na.id
+where d.id =  $P{idDefensa} 
+) z]]>
+	</queryString>
+	<field name="Ciudad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Ciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UnidadAcademica"/>
+	</field>
+	<field name="Estudiante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Estudiante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Persona"/>
+	</field>
+	<field name="HoraDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="HoraDefensa"/>
+	</field>
+	<field name="DiaDefensa" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="DiaDefensa"/>
+	</field>
+	<field name="DiaDefensaLiteral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DiaDefensaLiteral"/>
+	</field>
+	<field name="MesDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MesDefensa"/>
+	</field>
+	<field name="AnioDefensa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="AnioDefensa"/>
+	</field>
+	<field name="Especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Especialidad"/>
+	</field>
+	<field name="NivelAcademico" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NivelAcademico"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="NivelAcademico"/>
+	</field>
+	<field name="Parrafo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Parrafo"/>
+	</field>
+	<field name="Titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Defensa"/>
+	</field>
+	<field name="Dia" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Dia"/>
+	</field>
+	<field name="Mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Mes"/>
+	</field>
+	<field name="Anio" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Anio"/>
+	</field>
+	<field name="Cabecera" class="java.lang.String"/>
+	<field name="Parrafo1" class="java.lang.String"/>
+	<field name="Parrafo2" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="305" splitType="Stretch">
+			<textField>
+				<reportElement x="263" y="22" width="292" height="24" uuid="51629204-9d6d-4901-9c42-ea1c436230c7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cabecera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="41" width="280" height="22" uuid="6231394d-6fc3-45cc-a1d6-7db76c65141a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRESENTACIÓN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="73" width="486" height="80" uuid="fd4be685-77bd-4d17-8e10-291392211fc7"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Parrafo1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="161" width="486" height="138" uuid="f3d1167a-12fe-4ce5-b2e3-d9785364602b"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Parrafo2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="376" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="40" y="15" width="486" height="345" uuid="b5b4b6d4-c831-4c46-ab41-0d1900d70ed3"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[El Acto Académico de Exposición y Sustentación de Trabajo de Grado es de carácter público:
+
+La postulante expondrá su Trabajo de Grado en línea, pudiendo utilizar ayudas audiovisuales, cuadros, gráficos, esquemas, maquetas, muestras y otras que considere necesarias, para facilitar su presentación; el tiempo de duración de la exposición será de 45 minutos.
+
+La postulante a la conclusión de la exposición pasará a la Sustentación del Trabajo de Grado, absolverá las interrogantes que le formulen los miembros del Tribunal; el tiempo máximo de duración de esta fase será de 30 minutos.  
+
+El Docente Tutor está facultado para orientar al postulante durante la Sustentación y aclarar algunos conceptos que considere necesarios.
+
+El Vocal Relator promediará las calificaciones en línea de los miembros del Tribunal, donde la calificación obtenida en la Defensa Pública de Trabajo de Grado constituye el 80% y el promedio general de las calificaciones obtenidas en las asignaturas de Trabajo de Grado I y II constituye el 20%.
+ 
+Establecido el quórum reglamentario, corresponde a su Autoridad dar inicio al presente Acto.
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

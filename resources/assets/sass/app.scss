@@ -1,0 +1,146 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+@import "~vue-wysiwyg/dist/vueWysiwyg.css";
+@import "~leaflet/dist/leaflet.css";
+
+// Bootstrap
+//@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+body {
+    font-family: 'Raleway'
+}
+.modal {
+  overflow-y:auto;
+}
+.login-container {
+    height: 100%;
+    width: 100% !important;
+    display: block;
+    background-image: linear-gradient(to left top, $azul_emi, lighten($azul_emi, 0%));
+    align-content: center;
+    color: $amarillo_emi !important;
+    opacity: 1;
+    position: relative;
+    //opacity: 0.9;
+}
+
+.login-box {
+    margin-top: 12%;
+    background-color: transparent;
+}
+
+.app-logo {
+    width: 8.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .app-name {
+    color: $azul_emi;
+    font-size: 1.5em;
+  }
+  
+  .app-footername{
+    color: $azul_emi;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .page-header-title {
+    background-color: $azul_emi;
+  }
+    
+  .navbar-default {
+    background-color: $azul_emi;
+  }
+
+  .logo-sidebar {
+    width: 10.2em;
+                                            
+    margin-top: 10px;
+    margin-bottom: 50px;   
+  }
+
+  .app_logo-modulo {
+    width: 180px;
+    height: 150px;
+  }
+
+  .avatar-circle {
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+  
+  .initials {
+    font-size: 1.2em;
+    color: $amarillo_emi;
+    background-color:$azul_emi;
+    border-radius: 5px;
+    text-align: center;
+    padding: 3px 3px 3px 3px;
+    font-weight: bold;
+  }
+
+  .app-bg{
+    background-color: $azul_emi !important;
+  }
+  
+  .app-color {
+    color: $amarillo_emi;
+  }
+
+  .profile-photo {
+    width: 20em;
+  }
+
+  .modal-xl {
+    max-width: 95%;
+  }
+  
+  .btn-microsoft {
+    background-color: $microsoft-color;
+    border-color: darken($microsoft-color, 10%);
+    color: white;
+    &:hover, &:active, &:focus {
+      border-color: $microsoft-color;
+      background-color: white;
+      color: $microsoft-color;
+    }
+  }
+
+  /*  Estilo de fieldset */
+  fieldset {
+    background-color: #eeeeee;
+    margin-bottom: 12px;
+  }
+
+  legend {
+    background-color: #6c757d;
+    padding: 1px 1px;
+    color: white;
+    font-size: 17px;
+  }
+
+  /*  Correccion Accordions */
+  .card-box .card .card-header a[data-toggle=collapse]:before {
+    font-size: 0px;
+  }
+
+  .check-activo {
+    margin: 5px !important;
+    padding-left: 40px !important;
+    border-width: 2px !important;
+  }
+
+  #sidebar-menu ul ul li.active a {
+    color: #3292e0;
+  }
+

@@ -1,0 +1,11 @@
+
+Nothing to migrate.
+Seeding: UnidadAcademicaTableSeeder
+Seeding: RolTableSeeder
+Seeding: DepDocIdTableSeeder
+
+In StreamHandler.php line 109:
+                                                                                                                                                          
+  The stream or file "/home/jhalmar/Desarrollo/emi-defensa-tesis/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied  
+                                                                                                                                                          
+

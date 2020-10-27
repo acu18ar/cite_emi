@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ActaPES" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bb6154b-fa2f-41b7-b108-91f22221b52a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="defensa"/>
+	<parameter name="urlLogo" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="14" uuid="28df6ff7-6b78-4a8e-a90e-f2c6c5c19d5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[ESCUELA MILITAR DE INGENIERIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="180" height="14" uuid="e9d13c75-924c-4861-a4af-4137caa2e82f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA["Mscl. Antoniio Jose de Sucre"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="28" width="180" height="14" uuid="1d9d6a60-a997-4e31-9a22-b3dd690a48de">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[BOLIVIA]]></text>
+			</staticText>
+			<textField pattern="d/M/yyyy h:mm a">
+				<reportElement x="450" y="0" width="106" height="13" uuid="9d41cd73-f783-4766-bfab-aa557603e3ad">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="450" y="15" width="112" height="35" uuid="677bfe01-1b45-42c1-b155-1d2a520a7f4d"/>
+				<imageExpression><![CDATA[$P{urlLogo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="50" y="50" width="470" height="70" uuid="3c85ef40-5c5c-4d3d-a1d6-899a0a28423a"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ACTA DE PRESENTACIÒN, EXPOSICIÒN Y SUSTENTACIÒN DE TRABAJO DE GRADO TÈCNICO PERTENECIENTE AL SR.(A) "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="332" y="0" width="118" height="14" uuid="407d4009-595b-486a-99ef-87d2a9ee0539"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="170" splitType="Stretch">
+			<image>
+				<reportElement x="20" y="0" width="150" height="147" uuid="14353573-d41c-42af-a608-a4b928697226"/>
+				<imageExpression><![CDATA[""]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="170" y="-3" width="350" height="173" uuid="a1735e44-023f-46e7-b305-8a672ff9cd1d"/>
+				<box topPadding="2" leftPadding="3" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["En la ciudad de La Paz, a horas "+""+"del dia "+""+"del año dos mil viente, en la Escuela Militar de Ingenieria  Mcal.. Antonio Jose de Sucre, se hizo presente el Señor "+""+", postulante al Diplomado Acadèmico y al Tìtulo Profesional de "+""+", ante el Tribunal de Trabajo de Grado Tècnico conformado para el efecto por el Señor"+""+""+";el Señor(a)"+""+";el Señor(a)"+""+";el Señor(a)"+""+";el Señor(a)"+""+"; y el Señor(a)"+""+"."]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="142" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="0" width="500" height="60" uuid="7d7f98a7-7c81-40a8-b620-71439f57bdfa"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Iniciado el Acto de referencia y efectuada la Presentaciòn, Exposiciòn y Sustentaciòn de Trabajo de Grado Tècnico sobre el Tema:"+""+", los señores miembros del tribunal arribaron a los siguientes resultados."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="60" width="199" height="20" uuid="92ca07a0-874d-4bbf-bc02-e8bea4328308"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[CALIFICACIÒN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="80" width="200" height="20" uuid="69b4a930-008a-4f6c-b138-55596ac426ae"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SU SIGNFICADO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="341" y="60" width="179" height="20" uuid="ff12d8be-19d7-439a-8acf-a877fff7f313"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="341" y="80" width="179" height="20" uuid="205a5e19-536e-4d6b-a23c-991366321bfb"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="21" y="-41" width="238" height="20" uuid="7e695cc8-3a9d-4b28-ad4f-1aaad6b1d72b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ESCALA DE CALIFICACIONES                                            ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="-21" width="130" height="20" uuid="a6375b44-88ac-4322-94f7-f1eafed2ef6f"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[7.10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="-21" width="199" height="20" uuid="a84328fe-af98-4cb7-a3ce-ee284b26746f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[NOTA MÍNIMA DE APROBACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="-40" width="130" height="20" uuid="607a4076-db87-4ef4-854a-d865a3469393"/>
+				<box leftPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[1.00 a 10.00]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="352" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="0" width="500" height="70" uuid="7ad13abb-510b-455c-86a4-cd15132c1736"/>
+				<box leftPadding="3" rightPadding="1"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Siendo por tanto acreedor al Diploma Acadèmico y al tìtulo Profesional de "+""+", de acuerdo a disposiciones legales vigentes y  al Reglamente RAC-02 con lo que terminò el Acto Acadèmico, firmado al pie los señores miembros del Tribunal."]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="23" y="106" width="239" height="1" uuid="e9bb6c1c-f376-415c-b885-183e984f7787"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="23" y="111" width="239" height="20" uuid="bc207167-8dca-4131-ac76-c2405637e87d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jurado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="23" y="131" width="239" height="20" uuid="83f12291-09dc-4623-9819-dca09ed1e6a5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER($F{TipoMiembro})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="275" y="105" width="239" height="1" uuid="6b87506b-b82f-41a1-b9f5-f45aab242e11"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="275" y="110" width="239" height="20" uuid="35910751-d2ce-46a1-bda0-53d29f43bdde"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jurado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="275" y="130" width="239" height="20" uuid="cad46ec6-1277-4262-b81f-e6da390b51e7"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER($F{TipoMiembro})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="22" y="185" width="239" height="1" uuid="7981bede-639d-4850-9e55-9370f93bdeb6"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="22" y="190" width="239" height="20" uuid="6bbfa4ad-deaa-4c94-b239-fa63a5adc69c"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jurado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="22" y="210" width="239" height="20" uuid="b37dafdb-0f3a-4114-b9a7-5c309620fd85"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER($F{TipoMiembro})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="271" y="185" width="239" height="1" uuid="4b4ae266-0eaa-4a9f-bda6-b64f5c98685c"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="271" y="190" width="239" height="20" uuid="5fd4a102-5f91-4bb9-a970-c6c0da423818"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jurado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="271" y="210" width="239" height="20" uuid="8ab916ac-b220-47d1-8108-f1ea6d2574ea"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER($F{TipoMiembro})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="150" y="285" width="239" height="1" uuid="ce8c6431-ee02-473c-a979-3951786441ee"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="150" y="290" width="239" height="20" uuid="66fd88c6-b2e0-46da-aab7-ca43bb70fcb2"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jurado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="150" y="310" width="239" height="20" uuid="c8272fe1-89cb-4c56-bd29-c75c08b30e83"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER($F{TipoMiembro})]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>
