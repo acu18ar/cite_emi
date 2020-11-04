@@ -4,7 +4,8 @@
     <div class="content">
         <div class="">
             <div class="page-header-title">
-                <h4 class="page-title">{{ trans('labels.modules.UnidadAcademica') }}</h4>
+                {{-- <h4 class="page-title">{{ trans('labels.modules.UnidadAcademica') }}</h4> --}}
+                <h4 class="page-title">CURSOS C.I.T.E.</h4>
             </div>
         </div>
         <div class="page-content-wrapper ">
@@ -44,12 +45,14 @@
                             <ul class="parsley-errors-list filled" id="parsley-id-19" v-if="errorBag.Num"><li class="parsley-required">@{{ errorBag.Num }}</li></ul>
                         </div>
                         <div class="form-group">
-                            <label for="UnidadAcademica">{{ trans('labels.modules.UnidadAcademica') }}</label>
-                            <input type="text" class="form-control" name="UnidadAcademica" v-model="unidadacademica.UnidadAcademica">
-                            <ul class="parsley-errors-list filled" id="parsley-id-19" v-if="errorBag.UnidadAcademica"><li class="parsley-required">@{{ errorBag.UnidadAcademica }}</li></ul>
+                            {{-- <th scope="col">Agencia</th> --}}
+                            <label for="UnidadAcademica">hfsdfa</label>
+                            {{-- <label for="UnidadAcademica">Curso Militar</label> --}}
+                            <input type="text" class="form-control" name="hdsfkjl" v-model="gfvdc">
+                            <ul class="parsley-errors-list filled" id="parsley-id-19" v-if="errorBag.UnidadAcademica"><li class="parsley-required">cueS</li></ul>
                         </div>
                         <div class="form-group">
-                            <label for="Sigla">Sigla</label>
+                             <label for="Sigla">Sigla</label>
                             <input type="text" class="form-control" name="Sigla" v-model="unidadacademica.Sigla">
                             <ul class="parsley-errors-list filled" id="parsley-id-19" v-if="errorBag.Sigla"><li class="parsley-required">@{{ errorBag.Sigla }}</li></ul>
                         </div>
@@ -75,8 +78,9 @@
                 <div class="modal-body">
                     <h4>Numero</h4>
                     <p class="text-muted">@{{ unidadacademica.Num }}</p>
-                    <h4>{{ trans('labels.modules.UnidadAcademica') }}</h4>
-                    <p class="text-muted">@{{ unidadacademica.UnidadAcademica }}</p>
+                    <h4>hkgj</h4>
+                    {{-- <p class="text-muted">@{{ unidadacademica.UnidadAcademica }}</p> --}}
+                    <p class="text-muted">@ Curso Militar</p>
                     <h4>Sigla</h4>
                     <p class="text-muted">@{{ unidadacademica.Sigla }}</p>
                 </div>

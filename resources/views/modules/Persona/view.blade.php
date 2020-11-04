@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-xs-12">
                                 <div class="form-group">
-                                    <label for="UnidadAcademica">Unidad Academica</label>
+                                    <label for="UnidadAcademica">Curso</label>
                                     <select type="text" class="form-control" name="UnidadAcademica" v-model="persona.UnidadAcademica">
                                         <option :value="ua.id" v-for="ua in unidadAcademicas">@{{ ua.UnidadAcademica }}</option>
                                     </select>

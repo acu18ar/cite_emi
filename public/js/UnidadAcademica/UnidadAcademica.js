@@ -7,10 +7,11 @@ $(function() {
             url: urlIndexUnidadAcademica
         },
         deferRender: true,
+        //para modificar los cursos...
         columns: [
             { data: 'id', name: 'id', orderable: false, searchable: false , visible: false},
             { data: 'Num', name: 'Num', title: 'No.' },
-            { data: 'UnidadAcademica', name: 'UnidadAcademica', title: 'Unidad Académica' },
+            { data: 'UnidadAcademica', name: 'UnidadAcademica', title: 'Cursos' },
             { data: 'Sigla', name: 'Sigla', title: 'Sigla' },
             { data: 'action', name: 'action', title: 'Opciones', orderable: false, searchable: false },
         ],

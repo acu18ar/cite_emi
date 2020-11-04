@@ -24,6 +24,7 @@ class UnidadAcademicaController extends Controller
 
         return Datatables::of($item)
             ->addColumn('action', function ($p) {
+                // if(id !=)
                 return '<a href="#" @click.prevent="showUnidadAcademica('. $p->id . ')" class="btn btn-info btn-xs"><i class="fa fa-bars"></i> '. trans('labels.actions.details') .'</a> &nbsp;';
             })
         ->editColumn('id', '{{$id}}')

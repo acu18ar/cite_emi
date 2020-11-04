@@ -173,9 +173,10 @@
         <section class="whatwe home_page2" id="whatwe">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1 text-center">
-                        <video src="assets3/citevideo1.mp4" width="840" height="680" controls></video>
-                        <video src="assets3/citevideo2.mp4" width="840" height="680" controls></video>
+                    <div class="col-lg-12 col-lg-offset-1 text-center">
+                        {{-- <div> --}}
+                        <video src="assets3/citevideo1.mp4" width="auto" controls style="float: left; height: 30vh"></video>
+                        <video src="assets3/citevideo2.mp4" width="auto"  controls style="float: left; height: 30vh"></video>
                         {{-- <video src="assets3/citevideo1.mp4" autoplay muted loop></video> --}}
                         <div class="wedoContent">
                             <h5 class="text-uppercase color_white bold">what we do</h5>
@@ -190,7 +191,7 @@
 
 
         <!--CHOOSE US START-->
-        <section class="chooseus home_page2" id="chooseus">
+        {{-- <section class="chooseus home_page2" id="chooseus">
             <div class="perelaxBg3"></div>
             <div class="container">
                 <div class="row">
@@ -215,7 +216,7 @@
                     </div> -->
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!--CHOOSE US END-->
 
         <!--TESTMONIAL START-->
@@ -229,19 +230,31 @@
                                 <table>
                                     <tr>
                                         <td width="50%">
-                                            <img src="assets3/images/p1.jpg">
+                                            <img src="assets3/images/comandante.jpg" style="padding-right: 20px">
                                         </td>
+                                        {{-- <tr></tr> --}}
                                         <td width="50%">
-                                            <p>Este museo es parte del Centro  de Instrucción de Tropas Especiales ("<strong>CITE</strong>") que es la única escuela en el país donde se dictan cursos de paracaidismo tales como cursos de Plegadores, Jefes de Salto, Salto Libre, Operaciones Convencionales y No Convencionales.</p>
+                                            <p>Camaradas...</p>
+                                            <p>Llevo las Alas de Plata en el pecho, y las llevo con honor.</p>
+                                            <p>PARACAIDISTA!!!!!</p>
+                                            <p> ("<strong>Hasta la Eternidad</strong>")</p>
                                         </td>
                                     </tr>
                                 </table>
+                                <div class="testAut">
+                                    <h4>TCNL. DEM. Hans Erick Medrano Vasquez </h4>
+                                    <h4>Comandnate del RIAEREOTRANS-18 "VICTORIA" </h4>
+                                    <p>Cochabamba - Bolivia</p>
+                                </div>
+                            </div>
+                            
+                            <div class="singleTestmn">
+                                <p>Este museo es parte del Centro  de Instrucción de Tropas Especiales ("<strong>CITE</strong>") que es la única escuela en el país donde se dictan cursos de paracaidismo tales como cursos de Plegadores, Jefes de Salto, Salto Libre, Operaciones Convencionales y No Convencionales.</p>
                                 <div class="testAut">
                                     <h4>MUSEO DEL PARACAIDISTA</h4>
                                     <p>Cochabamba - Bolivia</p>
                                 </div>
                             </div>
-                            
                             <div class="singleTestmn">
                                 <p>La actividad más importante que realizó el CITE fue después del terremoto de Aiquile y Totora, en mayo de 1998, cuando se movilizaron a 60 paracaidistas, quienes llevaron vituallas y medicamentos para los afectados porque no había acceso por vía terrestre a las zonas afectadas.</p>
 

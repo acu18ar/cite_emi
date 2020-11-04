@@ -15,12 +15,12 @@
         </li>
         <li class="has_sub">
             <a href="javascript:void(0);" class="waves-effect {{ Request::is('UnidadAcademica*') || Request::is('NivelAcademico*') || Request::is('Especialidad*') || Request::is('DepDocId*') || Request::is('Rol*') ? 'subdrop' : '' }}"><i class="mdi mdi-city"></i>
-                <span>Organización </span> <span class="float-right"><i class="mdi mdi-plus"></i></span></a>
+                <span>Organización1 </span> <span class="float-right"><i class="mdi mdi-plus"></i></span></a>
             <ul class="list-unstyled" style="">
-                <li><a href="{{ route('UnidadAcademica.view') }}" class="{{ Request::is('UnidadAcademica*') ? 'active' : '' }}"><i class="fas fa-university"></i> {{ trans('labels.modules.UnidadAcademica') }}</a></li>
-                <li><a href="{{ route('NivelAcademico.view') }}" class="{{ Request::is('NivelAcademico*') ? 'active' : '' }}"><i class="fas fa-graduation-cap"></i> {{ trans('labels.modules.NivelAcademico') }}</a></li>
-                <li><a href="{{ route('Especialidad.view') }}" class="{{ Request::is('Especialidad*') ? 'active' : '' }}"><i class="fas fa-suitcase"></i> {{ trans('labels.modules.Especialidad') }}</a></li>
-                <li><a href="{{ route('DepDocId.view') }}" class="{{ Request::is('DepDocId*') ? 'active' : '' }}"><i class="far fa-id-card"></i> {{ trans('labels.modules.DepDocId') }}</a></li>
+                <li><a href="{{ route('UnidadAcademica.view') }}" class="{{ Request::is('UnidadAcademica*') ? 'active' : '' }}"><i class="fas fa-university"></i> Cursos</a></li>
+                {{-- <li><a href="{{ route('NivelAcademico.view') }}" class="{{ Request::is('NivelAcademico*') ? 'active' : '' }}"><i class="fas fa-graduation-cap"></i> {{ trans('labels.modules.NivelAcademico') }}</a></li> --}}
+                {{-- <li><a href="{{ route('Especialidad.view') }}" class="{{ Request::is('Especialidad*') ? 'active' : '' }}"><i class="fas fa-suitcase"></i> {{ trans('labels.modules.Especialidad') }}</a></li> --}}
+                {{-- <li><a href="{{ route('DepDocId.view') }}" class="{{ Request::is('DepDocId*') ? 'active' : '' }}"><i class="far fa-id-card"></i> {{ trans('labels.modules.DepDocId') }}</a></li> --}}
             </ul>
         </li>
         <li class="has_sub">
