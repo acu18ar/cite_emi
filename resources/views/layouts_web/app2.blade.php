@@ -4,28 +4,28 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	{{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title> C.I.T.E.</title>
 
 
 
         <!-- ALL CSS -->
-        <link rel="stylesheet" type="text/css" href="assets3/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/font-awesome.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/owl.carousel.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/owl.theme.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/animate.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/slick.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/flaticon.css">
-        <link rel="stylesheet" type="text/css" href="assets3/css/settings.css">
+        <link rel="stylesheet" href="assets3/css/bootstrap.css">
+        <link rel="stylesheet" href="assets3/css/font-awesome.css">
+        <link rel="stylesheet" href="assets3/css/owl.carousel.css">
+        <link rel="stylesheet" href="assets3/css/owl.theme.css">
+        <link rel="stylesheet" href="assets3/css/animate.css">
+        <link rel="stylesheet" href="assets3/css/slick.css">
+        <link rel="stylesheet" href="assets3/css/flaticon.css">
+        <link rel="stylesheet" href="assets3/css/settings.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" type="text/css" href="assets3/css/style.css" >
-        <link rel="stylesheet" type="text/css" href="assets3/css/preset.css" >
-        <link rel="stylesheet" type="text/css" href="assets3/css/responsive.css">
+        <link rel="stylesheet" href="assets3/css/style.css" >
+        <link rel="stylesheet" href="assets3/css/preset.css" >
+        <link rel="stylesheet" href="assets3/css/responsive.css">
 
 
-	<script src="assets3/js/jquery-1.11.3.min.js"></script>
+	{{-- <script src="assets3/js/jquery-1.11.3.min.js"></script> --}}
 	<link rel="icon"  type="image/png" href="assets3/images/logocite.png">
 
 
@@ -84,16 +84,16 @@
             </div>
         </header>
 		<!--HEADER END-->
-		
+</body>		
 <!-- Main Slider -->
 {{-- para un fondo llamativo --}}
 {{-- <section class="slider-container" style="background-image: url(assets2/images/slide-img-1-bg.png);"> --}}
 
-<div class="container">
+
 
     @yield('content')
 
-</div>
+
 <!-- Footer Widgets -->
 
 
@@ -123,9 +123,9 @@
                               <p>Suiguenos en nuestras Redes sociales.</p>
                               <div class="socialIcon">
                                   <a class="fb" href="https://www.facebook.com/Citeparacaidista2011"><i class="fa fa-facebook"></i></a>
-                                  <a class="tw" href="#"><i class="fa fa-twitter"></i></a>
-                                  <a class="gp" href="#"><i class="fa fa-google-plus"></i></a>
-                                  <a class="dr" href="#"><i class="fa fa-instagram"></i></a>
+                                  <a class="tw" href="https://twitter.com/del_helmuth/status/1277310944989904897/photo/1"><i class="fa fa-twitter"></i></a>
+                                  {{-- <a class="gp" href="#"><i class="fa fa-google-plus"></i></a> --}}
+                                  {{-- <a class="dr" href="#"><i class="fa fa-instagram"></i></a> --}}
 
                               </div>
                             </div>
@@ -162,7 +162,6 @@
 	<script type="text/javascript" src="assets3/js/jquery.localscroll-1.2.7-min.js"></script>
 	<script type="text/javascript" src="assets3/js/jquery.scrollTo-1.4.2-min.js"></script>
 	<script type="text/javascript" src="assets3/js/theme.js"></script>
-</body>
 
-</body>
+
 </html>

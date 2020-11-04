@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
@@ -13,7 +14,8 @@ Route::get('login2','Auth\LoginController@showLoginForm2')->name('login2');
 
 Route::get('/', function () {
     if(Auth::check())
-        return view('modules.Inicio.view2');
+        return view('modules.Inicio.view');
+
     else 
     return view('modules.pagina_inicio.view2'); 
 })->name('home');

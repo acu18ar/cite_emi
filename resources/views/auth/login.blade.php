@@ -4,8 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name') }}</title>
-        {{ Html::favicon( '/ICON.png' ) }}
+        {{-- <title>{{ config('app.name') }}</title> --}}
+        {{-- {{ Html::favicon( '/ICON.png' ) }} --}}
+        <title> C.I.T.E.</title>
+
+        <script src="assets3/js/jquery-1.11.3.min.js"></script>
+
+        <link rel="icon"  type="image/png" href="/assets3/images/logocite.png">
+
         <!-- Styles -->
         @include('partials.css')
     </head>
@@ -15,9 +21,11 @@
             <div class="card card-pages">
                 <div class="card-body">
                     <h3 class="text-center m-t-0 m-b-15">
-                        <a href="#" class="logo logo-admin"><img src="{{ url('/') }}/images/emi_logo.png" alt="" style="width:250px;"></a>
+                        {{-- <a href="#" class="logo logo-admin"><img src="{{ url('/') }}/images/emi_logo.png" alt="" style="width:250px;"></a> --}}
+                        <a href="#" class="logo logo-admin"><img src="/assets3/images/logocite.png" alt="" style="width:250px;"></a>
                     </h3>
-                    <h4 class="text-center m-t-0 app-name"><b>{{ config('app.name') }}</b></h4>
+                    {{-- <h4 class="text-center m-t-0 app-name"><b>{{ config('app.name') }}</b></h4> --}}
+                    <h4 class="text-center m-t-0 app-name"><b>CITE</b></h4>
 
                     <form class="form-horizontal m-t-20" method="post" action="{{ url('/login') }}">
                         {!! csrf_field() !!}

@@ -40,7 +40,7 @@
                             data-start="2000"
                             data-easing="Power4.easeOut">
                         <div class="revCon revBtn home_page2">
-                            <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a>
+                            {{-- <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a> --}}
                         </div>
                     </div>
                 </li>
@@ -79,7 +79,7 @@
                             data-start="2000"
                             data-easing="Power4.easeOut">
                         <div class="revCon revBtn home_page2">
-                            <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a>
+                            {{-- <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a> --}}
                         </div>
                     </div>
                 </li>
@@ -118,7 +118,7 @@
                             data-start="2000"
                             data-easing="Power4.easeOut">
                         <div class="revCon revBtn home_page2">
-                            <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a>
+                            {{-- <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a> --}}
                         </div>
                     </div>
                 </li>
@@ -157,7 +157,7 @@
                             data-start="2000"
                             data-easing="Power4.easeOut">
                         <div class="revCon revBtn home_page2">
-                            <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a>
+                            {{-- <a href="#" class="bes_button2"><span>Learn more about us <i class="flaticon-arrows"></i></span></a> --}}
                         </div>
                     </div>
                 </li>
@@ -174,6 +174,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 text-center">
+                        <video src="assets3/citevideo1.mp4" width="840" height="680" controls></video>
+                        <video src="assets3/citevideo2.mp4" width="840" height="680" controls></video>
+                        {{-- <video src="assets3/citevideo1.mp4" autoplay muted loop></video> --}}
                         <div class="wedoContent">
                             <h5 class="text-uppercase color_white bold">what we do</h5>
                             <h2 class="lead color_white">CETRO DE INSTRUCCION DE TROPAS ESPECIALES </h2>
@@ -223,12 +226,22 @@
                     <div class="col-lg-12">
                         <div id="testmonialCaro" class="home_page2">
                             <div class="singleTestmn">
-                                <p>Este museo es parte del Centro  de Instrucción de Tropas Especiales ("<strong>CITE</strong>") que es la única escuela en el país donde se dictan cursos de paracaidismo tales como cursos de Plegadores, Jefes de Salto, Salto Libre, Operaciones Convencionales y No Convencionales.</p>
+                                <table>
+                                    <tr>
+                                        <td width="50%">
+                                            <img src="assets3/images/p1.jpg">
+                                        </td>
+                                        <td width="50%">
+                                            <p>Este museo es parte del Centro  de Instrucción de Tropas Especiales ("<strong>CITE</strong>") que es la única escuela en el país donde se dictan cursos de paracaidismo tales como cursos de Plegadores, Jefes de Salto, Salto Libre, Operaciones Convencionales y No Convencionales.</p>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <div class="testAut">
                                     <h4>MUSEO DEL PARACAIDISTA</h4>
                                     <p>Cochabamba - Bolivia</p>
                                 </div>
                             </div>
+                            
                             <div class="singleTestmn">
                                 <p>La actividad más importante que realizó el CITE fue después del terremoto de Aiquile y Totora, en mayo de 1998, cuando se movilizaron a 60 paracaidistas, quienes llevaron vituallas y medicamentos para los afectados porque no había acceso por vía terrestre a las zonas afectadas.</p>
 

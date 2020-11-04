@@ -1,10 +1,14 @@
 @extends('layouts.app')
 @section('content')
+{{-- Vista principal de acceso de administrador --}}
 <div id="dashboard-app">
     <div class="content">
         <div class="">
             <div class="page-header-title">
-                <h4 class="page-title">{{ config('app.name') }}</h4>
+                {{-- <h4 class="page-title">{{ config('app.name') }}</h4> --}}
+                <h4 class="page-title">C.I.T.E.</h4>
+                <title> C.I.T.E.</title>
+
             </div>
         </div>
         <div class="page-content-wrapper ">
@@ -41,8 +45,8 @@
                                             </ul>
                                             <div class="tab-content bg-light">
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                    <p>Te damos la bienvenida al Sistema Work Network EMI .</p>
-                                                    <p>EMI desarrolla tecnologías y servicios que permiten que las personas se conecten, creen comunidades y hagan crecer su negocio. Estas Condiciones rigen el uso del sistema, Trabajo y los demás productos, funciones, apps, servicios, tecnologías y software que ofrecemos (los Productos de EMI o Productos), excepto cuando indiquemos expresamente que se aplican otras condiciones (y no estas). EMi, Inc. te proporciona estos Productos.</p>
+                                                    <p>Te damos la bienvenida al Sistema Work Network C.I.T.E.</p>
+                                                    <p> Work Network C.I.T.E. desarrolla tecnologías y servicios que permiten que Personal de Cuadros,  se conecten, creen comunidades y hagan crecer su negocio.</p>
                                                 </div>
                                                 <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                     <p>El sistema te ofrece</p>
@@ -61,7 +65,7 @@
                                                         <p>Las cookies son pequeños fragmentos de texto que se utilizan para almacenar información en navegadores web. Se utilizan para almacenar y recibir identificadores y otros datos en computadoras, teléfonos y otros dispositivos. Otras tecnologías, incluidos los datos que almacenamos en tu navegador web o dispositivo, los identificadores asociados a tu dispositivo y otros programas, se utilizan con fines similares. A los efectos de esta política, todas estas tecnologías reciben el nombre de "cookies".</p>
                                                     </div>
                                                     <div class="tab-pane fade" id="v-profile-2" role="tabpanel" aria-labelledby="v-profile-tab-2">
-                                                        <p>Utilizamos cookies si tienes una cuenta de EMI Work Network, utilizas los Productos de EMI Work Network, incluidos nuestro sitio web y nuestras aplicaciones, o visitas otros sitios web y otras aplicaciones que usan los Productos de EMI Work Network, incluidos el botón "Me gusta" u otras tecnologías de EMI Work Network. Las cookies permiten a EMI Work Network ofrecerte los Productos de EMI Work Network y entender la información que recibimos sobre ti, incluida la información sobre cómo usas los demás sitios web y aplicaciones o si te registraste o iniciaste sesión en ellos.</p>
+                                                        {{-- <p>Utilizamos coo incluidos el botón "Me gusta" u otras tecnologías de EMI Work Network. Las cookies permiten a EMI Work Network ofrecerte los Productos de EMI Work Network y entender la información que recibimos sobre ti, incluida la información sobre cómo usas los demás sitios web y aplicaciones o si te registraste o iniciaste sesión en ellos.</p> --}}
                                                         <p>En esta política, se explica cómo usamos las cookies y las opciones tienes. Excepto que se especifique lo contrario en esta política, la Política de datos se aplicará al procesamiento de los datos que recopilamos mediante cookies.</p>
                                                     </div>
                                                     

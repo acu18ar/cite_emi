@@ -2,7 +2,10 @@
 <!-- LOGO -->
 <div class="topbar-left">
     <div class="text-center">
-        <a href="{{url('/')}}" class="logo"><img class="app-logo" src="{{url('/')}}/images/emi_logo.png"></a>
+        {{-- <a href="{{url('/')}}" class="logo"><img class="app-logo" src="{{url('/')}}/images/emi_logo.png"></a> --}}
+        <a href="{{url('/')}}" class="logo"><img class="app-logo" src="{{url('/')}}/assets3/images/logocite.png"></a>
+        {{-- <link rel="icon"  type="image/png" href="/assets3/images/logocite.png"> --}}
+
         <a href="{{url('/')}}" class="logo-sm"><span>EMI</span></a>
         <br>
     </div>

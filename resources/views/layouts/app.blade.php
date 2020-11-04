@@ -6,8 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{!! csrf_token() !!}">
         <meta name="_token" content="{!! csrf_token() !!}">
-        {{ Html::favicon(url('/') . '/ICON.png' ) }}
-        <title>{{ config('app.name') }}</title>
+        {{-- {{ Html::favicon(url('/') . '/ICON.png' ) }} --}}
+        {{-- <title>{{ config('app.name') }}</title> --}}
+        <title>C.I.T.E. </title>
+        <link rel="icon"  type="image/png" href="/assets3/images/logocite.png">
+
+        
         @include('partials.css')
         @include('partials.scriptsDataTable')
 
